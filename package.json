@@ -1,6 +1,27 @@
 {
   "name": "real-estate-backend",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "check-org": "tsx src/scripts/orgs/check.ts",
+    "create-org": "tsx src/scripts/orgs/create.ts",
+    "status-org": "tsx src/scripts/orgs/status.ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.10.0",
+    "@prisma/client": "7.10.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pg": "^8.23.0",
+    "winston": "^3.19.0",
+    "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/pg": "^8.23.1",
+    "prisma": "7.10.0",
+    "tsx": "^4.23.13"
+  }
 }
