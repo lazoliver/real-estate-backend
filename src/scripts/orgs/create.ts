@@ -1,6 +1,7 @@
 import { ValidationError } from "yup";
 import OrganizationsService from "../../services/orgs";
 import { prisma } from "../../database/prisma";
+import logger from "../../configs/logs";
 
 void (async () => {
   try {
@@ -15,19 +16,19 @@ void (async () => {
 
     const org = await OrganizationsService.create(slug, name);
 
-    console.log(
+    logger.debug(
       `scripts/orgs/create - id: ${org.id} slug: ${org.slug} active: ${org.active}`,
     );
   } catch (error) {
     if (error instanceof ValidationError) {
-      console.error("scripts/orgs/create - ", {
+      logger.error("scripts/orgs/create - ", {
         message: error.message,
         errors: error.errors,
       });
     } else if (error instanceof Error) {
-      console.error("scripts/orgs/create - ", error);
+      logger.error("scripts/orgs/create - ", error);
     } else {
-      console.error("scripts/orgs/create - ", error);
+      logger.error("scripts/orgs/create - ", error);
     }
     process.exit(1);
   } finally {
