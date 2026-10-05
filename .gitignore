@@ -1,0 +1,9 @@
+# folders
+/src/database/generated
+node_modules
+logs
+
+# files
+.env
+
+/src/database/generated/prisma
