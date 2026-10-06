@@ -1,10 +1,10 @@
 import { OrganizationResponse } from "../interfaces/organizations";
 import { OrganizationsRepository } from "../repositories/organizations";
-import { checkOrgBySlug, createOrgBySlug } from "../validations/organizations";
+import { checkOrgSchema, createUserSchema } from "../validations/organizations";
 
 export const OrganizationsService = {
   async checkBySlug(slug: string): Promise<OrganizationResponse> {
-    const validatedData = await checkOrgBySlug.validate(
+    const validatedData = await checkOrgSchema.validate(
       { slug },
       { abortEarly: false },
     );
@@ -20,7 +20,7 @@ export const OrganizationsService = {
     return orgExists;
   },
   async create(slug: string, name: string): Promise<OrganizationResponse> {
-    const validatedData = await createOrgBySlug.validate(
+    const validatedData = await createUserSchema.validate(
       { slug, name },
       { abortEarly: false },
     );
@@ -39,7 +39,7 @@ export const OrganizationsService = {
     );
   },
   async changeStatus(slug: string): Promise<OrganizationResponse> {
-    const validatedData = await checkOrgBySlug.validate(
+    const validatedData = await checkOrgSchema.validate(
       { slug },
       { abortEarly: false },
     );
