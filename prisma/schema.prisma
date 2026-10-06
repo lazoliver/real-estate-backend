@@ -15,4 +15,32 @@ model Organization {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+
+  users     User[]
+}
+
+enum UserRole {
+  ADMIN
+  AGENT
+  MANAGER
+}
+
+model User {
+  id              String    @id @default(uuid())
+  email           String    @unique
+  name            String
+  surname         String
+  active          Boolean   @default(true)
+  password        String
+  firstLogon      Boolean   @default(true)
+  role            UserRole  @default(AGENT)
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  organizationId  String
+  organization    Organization  @relation(fields: [organizationId], references: [id])
+
+  @@unique([organizationId, email])
+  @@index([organizationId])
 }
